@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import css from './HomePage.module.css';
 import { BigButton } from 'components/BigButton/BigButton';
 
-const HomePage = () => {
+function HomePage() {
   return (
     <section className={css.section}>
       <div className={css.home_container}>
@@ -13,5 +13,5 @@ const HomePage = () => {
       </div>
     </section>
   );
-};
+}
 export default HomePage;

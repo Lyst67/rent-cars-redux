@@ -10,7 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { carsReducer } from './cars/carSlice';
+import { carsReducer } from './features/cars/carSlice';
 
 const carsRersistConfig = {
   key: 'carList',

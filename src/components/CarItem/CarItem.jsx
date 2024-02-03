@@ -2,7 +2,7 @@ import { BigButton } from 'components/BigButton/BigButton';
 import css from './CarItem.module.css';
 import sprite from '../assets/sprite.svg';
 
-export const CarItem = () => {
+export const CarItem = ({ carItem }) => {
   return (
     <div className={css.car_item}>
       <div className={css.car_img}>
@@ -12,7 +12,7 @@ export const CarItem = () => {
         <img src="" alt="car" />
         <div className={css.car_name}>
           <h2>
-            <span className={css.car_model}></span>
+            <span className={css.car_model}>{carItem.model}</span>
           </h2>
           <p></p>
         </div>

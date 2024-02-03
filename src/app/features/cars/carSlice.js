@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCars } from './operations';
-import { initialState } from './initialState';
+import { fetchCars } from './car-operations';
 
 export const carsSlice = createSlice({
   name: 'carsList',
-  initialState,
+  initialState: {
+    cars: [],
+    isLoading: false,
+    error: null,
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchCars.pending, state => {

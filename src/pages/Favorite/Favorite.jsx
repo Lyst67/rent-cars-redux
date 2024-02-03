@@ -4,7 +4,7 @@ import { CarList } from 'components/CarList/CarList';
 
 const cars = [{ a: '1' }, { b: '2' }, { c: '3' }, { d: '4' }];
 
-const Favorite = () => {
+function Favorite() {
   return (
     <section>
       <div className={css.favorite_container}>
@@ -13,5 +13,5 @@ const Favorite = () => {
       </div>
     </section>
   );
-};
+}
 export default Favorite;
