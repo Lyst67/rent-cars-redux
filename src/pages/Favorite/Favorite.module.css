@@ -1,5 +1,8 @@
+.section {
+  width: 100vw;
+}
 .favorite_container {
-  width: 1440px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   padding: 0 128px;

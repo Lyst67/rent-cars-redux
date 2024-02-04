@@ -7,7 +7,7 @@ import { selectFavorites } from 'app/features/cars/selectors';
 function Favorite() {
   const cars = useSelector(selectFavorites);
   return (
-    <section>
+    <section className={css.section}>
       <div className={css.favorite_container}>
         <ChooseForm />
         <CarList cars={cars} />
