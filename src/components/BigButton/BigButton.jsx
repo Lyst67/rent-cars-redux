@@ -1,9 +1,9 @@
 import css from './BigButton.module.css';
 
-export const BigButton = ({ children }) => {
+export const BigButton = ({ children, onClick }) => {
   return (
     <>
-      <button type="button" className={css.big_button}>
+      <button onClick={onClick} type="button" className={css.big_button}>
         {children}
       </button>
     </>

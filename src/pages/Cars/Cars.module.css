@@ -1,7 +1,29 @@
+@import '../../index.css';
+
+.section {
+  width: 100vw;
+}
 .cars_container {
-  width: 1440px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 128px;
+  padding: 0 128px 100px 128px;
   outline: 2px solid red;
+}
+.load_more {
+  display: block;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #3470ff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  background-color: transparent;
+  text-decoration-line: underline;
+  transition: color 250ms linear;
+}
+.load_more:is(:hover, :focus) {
+  color: #0b44cd;
 }

@@ -8,7 +8,7 @@ export const Header = () => {
   return (
     <header className={css.header}>
       <div className={`${css.header_container} ${css.container}`}>
-        <Link to={'/'}>
+        <Link to={'/'} className={css.home_link}>
           <img className={css.logo} src={logo} alt="car logo" />
         </Link>
         <p className={css.header_text}>Car Rent Group</p>

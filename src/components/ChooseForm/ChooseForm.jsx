@@ -1,37 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import css from './ChooseForm.module.css';
 import { Button } from 'components/Button/Button';
+import { useSelector } from 'react-redux';
+import { selectCars } from 'app/features/cars/selectors';
 
-const options = [
-  { value: 'buick', label: 'Buick' },
-  { value: 'volvo', label: 'Volvo' },
-  { value: 'hummer', label: 'Hummer' },
-  { value: 'subaru', label: 'Subaru' },
-  { value: 'mitsubishi', label: 'Mitsubishi' },
-  { value: 'nissan', label: 'Nissan' },
-  { value: 'lincoln', label: 'Lincoln' },
-  { value: 'gmc', label: 'GMC' },
-  { value: 'hyundai', label: 'Hyundai' },
-  { value: 'enter', label: 'Enter the text' },
-];
 const optionPrice = [{ value: 'to', label: 'To $' }];
 
-const handleSubmit = () => {};
-
 export const ChooseForm = () => {
+  const carList = useSelector(selectCars);
+  const [brand, setBrand] = useState('');
+
+  const brands = carList.map(item => item.make);
+  let uniqueArr = [...new Set(brands)];
+  const option = uniqueArr.map(brand => ({
+    value: brand.toLowerCase(),
+    label: brand,
+  }));
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const value = e.target.value;
+    setBrand(value);
+    console.log(brand);
+  };
+
   return (
     <>
       <div>
-        <form className={css.search_form} onSubmit={handleSubmit}>
+        <form className={css.search_form} onChange={handleSubmit}>
           <div className={css.search_inputs}>
             <label className={css.select_label}>
               Car brand
               <select className={css.select} name="cars" defaultValue="enter">
-                {options.map(({ value, label }) => (
+                {option.map(({ value, label }) => (
                   <option className={css.option} key={value} value={value}>
                     {label}
                   </option>
                 ))}
+                <option className={css.option} key="enter" value="enter">
+                  Enter the text
+                </option>
               </select>
             </label>
             <label className={css.select_label}>
@@ -53,12 +61,7 @@ export const ChooseForm = () => {
                 Сar mileage / km
                 <div className={css.input_wrap}>
                   <div className={css.input_place}>From</div>
-                  <input
-                    className={css.form_input}
-                    type="text"
-                    name="price"
-                    required
-                  />
+                  <input className={css.form_input} type="text" name="price" />
                 </div>
               </label>
               <label className={css.form_label}>
@@ -68,7 +71,6 @@ export const ChooseForm = () => {
                     className={`${css.form_input} ${css.second}`}
                     type="text"
                     name="price"
-                    required
                   />
                 </div>
               </label>

@@ -12,7 +12,8 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 1.42;
-  letter-spacing: 0%;
+  letter-spacing: 0;
+  white-space: nowrap;
   transition: background-color 250ms linear;
 }
 .big_button:is(:hover, :focus) {

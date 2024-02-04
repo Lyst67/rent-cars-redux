@@ -6,4 +6,9 @@
   font-size: 28px;
   font-weight: 500;
   color: rgb(45, 3, 169);
+  transition: color 250ms linear, scale 250ms linear;
+}
+.nav_link:is(:hover, :focus) {
+  scale: 1.1;
+  color: #0b44cd;
 }
