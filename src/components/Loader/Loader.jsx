@@ -4,7 +4,12 @@ export const Loader = () => {
   return (
     <div className={css.loader_box}>
       <div className={css.loader}>
-        <ThreeCircles strokeWidth="5" animationDuration="0.75" visible={true} />
+        <ThreeCircles
+          strokeWidth="5"
+          animationDuration="0.75"
+          visible={true}
+          width="100%"
+        />
       </div>
     </div>
   );
