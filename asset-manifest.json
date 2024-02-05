@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/rent-cars-redux/static/css/main.bcf61517.css",
-    "main.js": "/rent-cars-redux/static/js/main.e8e829c2.js",
+    "main.css": "/rent-cars-redux/static/css/main.f69bef0f.css",
+    "main.js": "/rent-cars-redux/static/js/main.458aad3b.js",
+    "static/media/driving.webp": "/rent-cars-redux/static/media/driving.16bd475a5b65954e690a.webp",
     "static/media/logo.webp": "/rent-cars-redux/static/media/logo.67e691531d95916ef36c.webp",
     "static/media/sprite.svg": "/rent-cars-redux/static/media/sprite.3f89a6f46dbdeb964c1ccba0d8c0bdd1.svg",
     "index.html": "/rent-cars-redux/index.html",
-    "main.bcf61517.css.map": "/rent-cars-redux/static/css/main.bcf61517.css.map",
-    "main.e8e829c2.js.map": "/rent-cars-redux/static/js/main.e8e829c2.js.map"
+    "main.f69bef0f.css.map": "/rent-cars-redux/static/css/main.f69bef0f.css.map",
+    "main.458aad3b.js.map": "/rent-cars-redux/static/js/main.458aad3b.js.map"
   },
   "entrypoints": [
-    "static/css/main.bcf61517.css",
-    "static/js/main.e8e829c2.js"
+    "static/css/main.f69bef0f.css",
+    "static/js/main.458aad3b.js"
   ]
 }
