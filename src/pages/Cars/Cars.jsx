@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
   selectCars,
-  selectNotFound,
+  selectCompleted,
   selectPage,
   selectisLoading,
 } from 'app/features/cars/selectors';
@@ -17,7 +17,7 @@ function Cars() {
   const dispatch = useDispatch();
   const statePage = useSelector(selectPage);
   const carList = useSelector(selectCars);
-  const notFound = useSelector(selectNotFound);
+  const isCompleted = useSelector(selectCompleted);
   const isLoading = useSelector(selectisLoading);
   const [selectedBrand, setSelectedBrand] = useState(null);
 
@@ -27,11 +27,11 @@ function Cars() {
 
   useEffect(() => {
     dispatch(removePage());
-    dispatch(fetchCars({ limit: 12, page: 1 }));
+    dispatch(fetchCars({ complited: false, page: 1, limit: 12 }));
   }, [dispatch]);
 
   function handleLoadMore() {
-    dispatch(fetchCars({ page: statePage - 1 }));
+    dispatch(fetchCars({ complited: isCompleted, page: statePage, limit: 12 }));
   }
   function handleChooseMake(brand) {
     setSelectedBrand(brand);
@@ -42,9 +42,9 @@ function Cars() {
       {isLoading && <Loader />}
       <section className={css.section}>
         <div className={css.cars_container}>
-          <ChooseForm onChange={handleChooseMake} />
+          <ChooseForm onSubmit={handleChooseMake} />
           <CarList cars={filteredCars} />
-          {!notFound && (
+          {!isCompleted && (
             <button
               type="button"
               onClick={handleLoadMore}

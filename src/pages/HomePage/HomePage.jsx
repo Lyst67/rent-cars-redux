@@ -6,7 +6,9 @@ function HomePage() {
   return (
     <section className={css.section}>
       <div className={css.home_container}>
-        <h1 className={css.home_text}>Our cars are your freedom!</h1>
+        <h1 className={css.home_text}>
+          Our cars <span className={css.color_text}>are your</span> freedom!
+        </h1>
         <Link to={'catalog'}>
           <BigButton>Choose a car</BigButton>
         </Link>

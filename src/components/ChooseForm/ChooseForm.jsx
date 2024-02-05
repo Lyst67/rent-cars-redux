@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import css from './ChooseForm.module.css';
 import { Button } from 'components/Button/Button';
 import { useSelector } from 'react-redux';
@@ -6,8 +6,9 @@ import { selectCars } from 'app/features/cars/selectors';
 
 const optionPrice = [{ value: 'to', label: 'To $' }];
 
-export const ChooseForm = ({ onChange }) => {
+export const ChooseForm = ({ onSubmit }) => {
   const carList = useSelector(selectCars);
+  const [brand, setBrand] = useState('');
 
   const brands = carList.map(item => item.make);
   let uniqueArr = [...new Set(brands)];
@@ -16,20 +17,28 @@ export const ChooseForm = ({ onChange }) => {
     label: brand,
   }));
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const brand = e.target.value;
-    onChange(brand);
-  };
+  function handleSubmit(event) {
+    event.preventDefault();
+    onSubmit(brand);
+  }
+
+  function handleChange(event) {
+    setBrand(event.target.value);
+  }
 
   return (
     <>
       <div>
-        <form className={css.search_form} onChange={handleSubmit}>
+        <form className={css.search_form} onSubmit={handleSubmit}>
           <div className={css.search_inputs}>
             <label className={css.select_label}>
               Car brand
-              <select className={css.select} name="cars" defaultValue="enter">
+              <select
+                onChange={handleChange}
+                className={css.select}
+                name="cars"
+                defaultValue="enter"
+              >
                 {option.map(({ value, label }) => (
                   <option className={css.option} key={value} value={value}>
                     {label}
@@ -73,7 +82,7 @@ export const ChooseForm = ({ onChange }) => {
                 </div>
               </label>
             </div>
-            <Button>Search</Button>
+            <Button type="submit">Search</Button>
           </div>
         </form>
       </div>

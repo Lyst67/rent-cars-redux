@@ -11,7 +11,7 @@ export const Header = () => {
         <Link to={'/'} className={css.home_link}>
           <img className={css.logo} src={logo} alt="car logo" />
         </Link>
-        <p className={css.header_text}>Car Rent Group</p>
+        <p className={css.header_text}>Car Rental Group</p>
         <Navigation />
       </div>
     </header>

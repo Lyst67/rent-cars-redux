@@ -8,7 +8,8 @@ export const carsSlice = createSlice({
   initialState: {
     cars: [],
     page: 1,
-    notFound: true,
+    limit: 12,
+    completed: false,
     isLoading: false,
     error: null,
   },
@@ -16,6 +17,7 @@ export const carsSlice = createSlice({
     removePage(state) {
       state.page = 1;
       state.cars = [];
+      state.completed = false;
     },
   },
   extraReducers: builder => {
@@ -26,18 +28,12 @@ export const carsSlice = createSlice({
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.cars = [
-          ...state.cars,
-          ...action.payload.slice(
-            state.cars.length,
-            state.cars.length + ITEMS_PER_PAGE
-          ),
-        ];
-        if (action.payload.length >= 1) {
-          state.notFound = false;
-          state.page = state.page + 1;
+        state.page = state.page + 1;
+        state.cars = [...state.cars, ...action.payload];
+        if (action.payload.length < 12) {
+          state.completed = true;
         } else {
-          state.notFound = true;
+          state.completed = false;
         }
       })
       .addCase(fetchCars.rejected, (state, action) => {

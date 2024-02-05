@@ -51,3 +51,9 @@ export function preLastWord(obj) {
     return lastWord;
   }
 }
+
+export function replaseDot(value) {
+  let number = (value / 1000).toString();
+  let numberWithComma = number.replace('.', ',');
+  return numberWithComma;
+}

@@ -48,7 +48,7 @@ export const CarItem = ({ carItem }) => {
 
   return (
     <>
-      <div className={css.car_item}>
+      <li className={css.car_item}>
         <div className={css.car_img_box}>
           <button type="button" onClick={handleFavorite}>
             <svg
@@ -93,7 +93,7 @@ export const CarItem = ({ carItem }) => {
           </li>
         </ul>
         <BigButton onClick={handleLernMoreModal}>Learn more</BigButton>
-      </div>
+      </li>
       {openModal && (
         <LernMoreModal
           onClose={handleCloseModal}

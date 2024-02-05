@@ -7,6 +7,7 @@ import {
   minAge,
   lastWord,
   preLastWord,
+  replaseDot,
 } from '../HelperFunctions/nelperFunctions';
 
 export const LernMoreModal = ({ onClose, carItem }) => {
@@ -110,9 +111,9 @@ export const LernMoreModal = ({ onClose, carItem }) => {
           <ul className={css.features}>
             <li className={css.conditions_row}>
               <div className={css.conditions_item}>
-                Minimum age :
+                {`Minimum age : `}
                 <span className={css.customer_data}>
-                  {` ${minAge(rentalConditions)}`}
+                  {minAge(rentalConditions)}
                 </span>
               </div>
               <div className={css.conditions_item}>
@@ -124,12 +125,12 @@ export const LernMoreModal = ({ onClose, carItem }) => {
                 {conditions(rentalConditions)[2]}
               </div>
               <div className={css.conditions_item}>
-                Mileage:
-                <span className={css.customer_data}>{` ${mileage}`}</span>
+                {`Mileage: `}
+                <span className={css.customer_data}>{replaseDot(mileage)}</span>
               </div>
               <div className={css.conditions_item}>
-                Price:
-                <span className={css.customer_data}>{` ${rentalPrice}`}</span>
+                {`Price: `}
+                <span className={css.customer_data}>{rentalPrice}</span>
               </div>
             </li>
           </ul>
