@@ -30,7 +30,7 @@ function Cars() {
     dispatch(fetchCars({ limit: 12, page: 1 }));
   }, [dispatch]);
 
-  function handleLoadmore() {
+  function handleLoadMore() {
     dispatch(fetchCars({ page: statePage - 1 }));
   }
   function handleChooseMake(brand) {
@@ -47,7 +47,7 @@ function Cars() {
           {!notFound && (
             <button
               type="button"
-              onClick={handleLoadmore}
+              onClick={handleLoadMore}
               className={css.load_more}
             >
               Load more
