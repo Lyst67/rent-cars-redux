@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchCars } from './car-operations';
 
-const ITEMS_PER_PAGE = 12;
-
 export const carsSlice = createSlice({
   name: 'carsList',
   initialState: {
