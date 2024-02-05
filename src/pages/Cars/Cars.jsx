@@ -2,7 +2,7 @@ import { ChooseForm } from 'components/ChooseForm/ChooseForm';
 import css from './Cars.module.css';
 import { CarList } from 'components/CarList/CarList';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   selectCars,
   selectNotFound,
@@ -19,6 +19,11 @@ function Cars() {
   const carList = useSelector(selectCars);
   const notFound = useSelector(selectNotFound);
   const isLoading = useSelector(selectisLoading);
+  const [selectedBrand, setSelectedBrand] = useState(null);
+
+  const filteredCars = selectedBrand
+    ? carList.filter(car => car.make.toLowerCase() === selectedBrand)
+    : carList;
 
   useEffect(() => {
     dispatch(removePage());
@@ -28,14 +33,17 @@ function Cars() {
   function handleLoadmore() {
     dispatch(fetchCars({ page: statePage - 1 }));
   }
+  function handleChooseMake(brand) {
+    setSelectedBrand(brand);
+  }
 
   return (
     <>
       {isLoading && <Loader />}
       <section className={css.section}>
         <div className={css.cars_container}>
-          <ChooseForm />
-          <CarList cars={carList} />
+          <ChooseForm onChange={handleChooseMake} />
+          <CarList cars={filteredCars} />
           {!notFound && (
             <button
               type="button"

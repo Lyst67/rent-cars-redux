@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import css from './ChooseForm.module.css';
 import { Button } from 'components/Button/Button';
 import { useSelector } from 'react-redux';
@@ -6,9 +6,8 @@ import { selectCars } from 'app/features/cars/selectors';
 
 const optionPrice = [{ value: 'to', label: 'To $' }];
 
-export const ChooseForm = () => {
+export const ChooseForm = ({ onChange }) => {
   const carList = useSelector(selectCars);
-  const [brand, setBrand] = useState('');
 
   const brands = carList.map(item => item.make);
   let uniqueArr = [...new Set(brands)];
@@ -19,9 +18,10 @@ export const ChooseForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const value = e.target.value;
-    setBrand(value);
-    console.log(brand);
+    const brand = e.target.value;
+    onChange(brand);
+    // setBrand(value);
+    // console.log(brand);
   };
 
   return (
