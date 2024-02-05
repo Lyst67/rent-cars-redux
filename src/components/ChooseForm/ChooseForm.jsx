@@ -20,8 +20,6 @@ export const ChooseForm = ({ onChange }) => {
     e.preventDefault();
     const brand = e.target.value;
     onChange(brand);
-    // setBrand(value);
-    // console.log(brand);
   };
 
   return (
