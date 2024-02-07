@@ -15,15 +15,11 @@ import { Loader } from 'components/Loader/Loader';
 
 function Cars() {
   const dispatch = useDispatch();
-  const statePage = useSelector(selectPage);
   const carList = useSelector(selectCars);
+  const statePage = useSelector(selectPage);
   const isCompleted = useSelector(selectCompleted);
   const isLoading = useSelector(selectisLoading);
-  const [selectedBrand, setSelectedBrand] = useState(null);
-
-  const filteredCars = selectedBrand
-    ? carList.filter(car => car.make.toLowerCase() === selectedBrand)
-    : carList;
+  const [filteredCars, setFilteredCars] = useState(carList);
 
   useEffect(() => {
     dispatch(removePage());
@@ -33,16 +29,52 @@ function Cars() {
   function handleLoadMore() {
     dispatch(fetchCars({ complited: isCompleted, page: statePage, limit: 12 }));
   }
-  function handleChooseMake(brand) {
-    setSelectedBrand(brand);
+
+  function handleChooseCar(brand, price, mileageFrom, mileageTo) {
+    let chooseCars = carList.filter(car => {
+      return (
+        (!brand || car.make.toLowerCase() === brand) &&
+        (!price || car.rentalPrice.replace('$', '') <= price) &&
+        (!mileageFrom || car.mileage >= mileageFrom.replace(',', '')) &&
+        (!mileageTo || car.mileage >= mileageTo.replace(',', ''))
+      );
+    });
+    if (!brand && !price && !mileageFrom && !mileageTo) {
+      chooseCars = carList;
+    }
+    // console.log(chooseCars.map(car => car.make));
+    setFilteredCars(chooseCars);
   }
+
+  // function handleChooseCar(brand, price, mileageFrom, mileageTo) {
+  //   let chooseCars = carList.filter(car => {
+  //     if (brand && car.make.toLowerCase() !== brand.toLowerCase()) {
+  //       return false;
+  //     }
+  //     if (price && parseInt(car.rentalPrice.replace('$', '')) > price) {
+  //       return false;
+  //     }
+  //     if (mileageFrom && parseInt(car.mileage) < mileageFrom.replace(',', '')) {
+  //       return false;
+  //     }
+  //     if (mileageTo && parseInt(car.mileage) > mileageTo.replace(',', '')) {
+  //       return false;
+  //     }
+  //     return true;
+  //   });
+  //   if (!brand && !price && !mileageFrom && !mileageTo) {
+  //     chooseCars = carList;
+  //   }
+  //   console.log(chooseCars.map(car => car.make));
+  //   setFilteredCars(chooseCars);
+  // }
 
   return (
     <>
       {isLoading && <Loader />}
       <section className={css.section}>
         <div className={css.cars_container}>
-          <ChooseForm onSubmit={handleChooseMake} />
+          <ChooseForm onSubmit={handleChooseCar} />
           <CarList cars={filteredCars} />
           {!isCompleted && (
             <button

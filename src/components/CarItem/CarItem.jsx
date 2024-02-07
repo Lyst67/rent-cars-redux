@@ -3,12 +3,7 @@ import css from './CarItem.module.css';
 import sprite from '../assets/sprite.svg';
 import { useState } from 'react';
 import { LernMoreModal } from 'components/LernMoreModal/LernMoreModal';
-import {
-  getAccessory,
-  preLastWord,
-  lastWord,
-  premium,
-} from '../HelperFunctions/nelperFunctions';
+import { getAccessory, premium } from '../HelperFunctions/nelperFunctions';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from 'app/features/favorifeSlice';
 import { selectFavorites } from 'app/features/cars/selectors';
@@ -16,8 +11,8 @@ import { selectFavorites } from 'app/features/cars/selectors';
 export const CarItem = ({ carItem }) => {
   const dispatch = useDispatch();
   const carFavorite = useSelector(selectFavorites);
-
   const [openModal, setOpenModal] = useState(false);
+
   const {
     img,
     make,
@@ -32,7 +27,7 @@ export const CarItem = ({ carItem }) => {
     rentalPrice,
   } = carItem;
 
-  const handleLernMoreModal = () => {
+  const handleOpenMoreModal = () => {
     setOpenModal(true);
     document.body.style.overflow = 'hidden';
   };
@@ -45,6 +40,7 @@ export const CarItem = ({ carItem }) => {
     dispatch(toggleFavorite(carItem));
   };
   const favoriteIcon = carFavorite.find(car => car.id === id);
+  const carAddress = address.split(',').slice(1);
 
   return (
     <>
@@ -73,16 +69,16 @@ export const CarItem = ({ carItem }) => {
           <p>{rentalPrice}</p>
         </div>
         <ul className={css.car_options}>
-          <li className={css.options_wrap}>
-            <span>{preLastWord({ address })}</span>
+          <li className={css.options_wrap_first}>
+            <span>{carAddress[0]}</span>
             <hr className={css.hr} />
-            <span>{lastWord({ address })}</span>
+            <span>{carAddress[1]}</span>
             <hr className={css.hr} />
             <span>{rentalCompany}</span>
             <hr className={css.hr} />
             <span>{premium(year)}</span>
           </li>
-          <li className={css.options_wrap}>
+          <li className={css.options_wrap_second}>
             <span>{type}</span>
             <hr className={css.hr} />
             <span>{model}</span>
@@ -92,7 +88,7 @@ export const CarItem = ({ carItem }) => {
             <span>{getAccessory(accessories, functionalities)}</span>
           </li>
         </ul>
-        <BigButton onClick={handleLernMoreModal}>Learn more</BigButton>
+        <BigButton onClick={handleOpenMoreModal}>Learn more</BigButton>
       </li>
       {openModal && (
         <LernMoreModal

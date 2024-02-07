@@ -3,28 +3,54 @@ import css from './ChooseForm.module.css';
 import { Button } from 'components/Button/Button';
 import { useSelector } from 'react-redux';
 import { selectCars } from 'app/features/cars/selectors';
-
-const optionPrice = [{ value: 'to', label: 'To $' }];
+import { numberWithComma } from '../HelperFunctions/nelperFunctions';
 
 export const ChooseForm = ({ onSubmit }) => {
   const carList = useSelector(selectCars);
-  const [brand, setBrand] = useState('');
+  const [mileage, setMileage] = useState('');
+  const [mileageTo, setMileageTo] = useState('');
+
+  const handleChangeInputFrom = event => {
+    let value = event.target.value;
+    let newValue = value.replace(/,/g, '');
+    setMileage(numberWithComma(newValue));
+  };
+  const handleChangeInputTo = event => {
+    let value = event.target.value;
+    let newValue = value.replace(/,/g, '');
+    setMileageTo(numberWithComma(newValue));
+  };
 
   const brands = carList.map(item => item.make);
-  let uniqueArr = [...new Set(brands)];
-  const option = uniqueArr.map(brand => ({
+  let uniqueBrandArr = [...new Set(brands)];
+  const optionsBrand = uniqueBrandArr.map(brand => ({
     value: brand.toLowerCase(),
     label: brand,
   }));
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    onSubmit(brand);
-  }
+  const prices = carList.map(
+    item => item.rentalPrice.substring(1) - (item.rentalPrice.substring(1) % 10)
+  );
+  let uniqueArr = [...new Set(prices)];
+  const optionsPrice = [...uniqueArr]
+    .sort((a, b) => a - b)
+    .map(price => ({
+      value: price,
+      label: price,
+    }));
 
-  function handleChange(event) {
-    setBrand(event.target.value);
-  }
+  const handleSubmit = event => {
+    event.preventDefault();
+    const form = event.target;
+    const brand = form.elements.cars.value;
+    const price = form.elements.price.value;
+    const mileageFrom = form.elements.from.value;
+    const mileageTo = form.elements.to.value;
+    onSubmit(brand, price, mileageFrom, mileageTo);
+    setMileage('');
+    setMileageTo('');
+    form.reset();
+  };
 
   return (
     <>
@@ -33,42 +59,49 @@ export const ChooseForm = ({ onSubmit }) => {
           <div className={css.search_inputs}>
             <label className={css.select_label}>
               Car brand
-              <select
-                onChange={handleChange}
-                className={css.select}
-                name="cars"
-                defaultValue="enter"
-              >
-                {option.map(({ value, label }) => (
+              <select className={css.select} name="cars" defaultValue="">
+                {optionsBrand.map(({ value, label }) => (
                   <option className={css.option} key={value} value={value}>
                     {label}
                   </option>
                 ))}
-                <option className={css.option} key="enter" value="enter">
+                <option className={css.option} key="enter" value="">
                   Enter the text
                 </option>
               </select>
             </label>
             <label className={css.select_label}>
               Price/ 1 hour
-              <select
-                className={`${css.select} ${css.select_price}`}
-                name="price"
-                defaultValue="to"
-              >
-                {optionPrice.map(({ value, label }) => (
-                  <option className={css.option} key={value} value={value}>
-                    {label}
+              <div className={css.select_wrap}>
+                <div className={css.input_place}>To</div>
+                <select
+                  className={`${css.select} ${css.select_price}`}
+                  name="price"
+                  defaultValue=""
+                >
+                  {optionsPrice.map(({ value, label }) => (
+                    <option className={css.option} key={value} value={value}>
+                      {`${label}$`}
+                    </option>
+                  ))}
+                  <option className={css.option} key="to" value="">
+                    {`   $`}
                   </option>
-                ))}
-              </select>
+                </select>
+              </div>
             </label>
             <div className={css.last_inputs}>
               <label className={css.form_label}>
                 Сar mileage / km
                 <div className={css.input_wrap}>
                   <div className={css.input_place}>From</div>
-                  <input className={css.form_input} type="text" name="price" />
+                  <input
+                    className={css.form_input}
+                    type="text"
+                    name="from"
+                    value={mileage}
+                    onChange={handleChangeInputFrom}
+                  />
                 </div>
               </label>
               <label className={css.form_label}>
@@ -77,7 +110,9 @@ export const ChooseForm = ({ onSubmit }) => {
                   <input
                     className={`${css.form_input} ${css.second}`}
                     type="text"
-                    name="price"
+                    name="to"
+                    value={mileageTo}
+                    onChange={handleChangeInputTo}
                   />
                 </div>
               </label>

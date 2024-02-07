@@ -10,11 +10,9 @@ export function minAge(row) {
 }
 
 export function getAccessory(arr1, arr2) {
-  const shortRow = arr1?.filter(accessory => accessory.split(' ').length <= 2);
+  const shortRow = arr1?.filter(accessory => accessory.split(' '));
   if (shortRow?.length === 0) {
-    const shortRowArr2 = arr2?.filter(
-      accessory => accessory.split(' ').length <= 2
-    );
+    const shortRowArr2 = arr2?.filter(accessory => accessory.split(' '));
     if (shortRowArr2.length > 0) {
       const randomIndex = Math.floor(Math.random() * shortRowArr2.length);
       return shortRowArr2[randomIndex];
@@ -34,26 +32,10 @@ export function premium(year, type) {
   }
 }
 
-export function lastWord(obj) {
-  const value = Object.values(obj)[0];
-  if (value) {
-    let words = value.split(' ');
-    let lastWord = words[words.length - 1];
-    return lastWord;
+export function numberWithComma(number) {
+  if (number.toString().split('').length <= 3) {
+    return number;
+  } else {
+    return (number / 1000).toString().replace('.', ',');
   }
-}
-
-export function preLastWord(obj) {
-  const value = Object.values(obj)[0];
-  if (value) {
-    let words = value.split(' ');
-    let lastWord = words[words.length - 2];
-    return lastWord;
-  }
-}
-
-export function replaseDot(value) {
-  let number = (value / 1000).toString();
-  let numberWithComma = number.replace('.', ',');
-  return numberWithComma;
 }

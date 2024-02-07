@@ -24,7 +24,7 @@
 }
 .input_place {
   position: absolute;
-  top: 14px;
+  top: 16px;
   left: 18px;
   color: #121417;
   font-size: 18px;
@@ -80,8 +80,11 @@
   background: #f7f7fb;
 }
 .select_price {
-  padding: 14px 67px 14px 18px;
+  padding: 14px 46px 14px 40px;
   word-spacing: 8px;
+}
+.select_wrap {
+  position: relative;
 }
 .option {
   font-size: 14px;

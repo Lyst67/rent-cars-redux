@@ -5,9 +5,7 @@ import { useCallback, useEffect } from 'react';
 import {
   conditions,
   minAge,
-  lastWord,
-  preLastWord,
-  replaseDot,
+  numberWithComma,
 } from '../HelperFunctions/nelperFunctions';
 
 export const LernMoreModal = ({ onClose, carItem }) => {
@@ -50,6 +48,8 @@ export const LernMoreModal = ({ onClose, carItem }) => {
     };
   }, [handleKeyDown]);
 
+  const carAddress = address.split(',').slice(1);
+
   return (
     <>
       <div className={css.modal_backdrop} onClick={onClose}>
@@ -71,9 +71,9 @@ export const LernMoreModal = ({ onClose, carItem }) => {
           </div>
           <ul className={css.car_options}>
             <li className={css.options_wrap}>
-              <span>{preLastWord({ address })}</span>
+              <span>{carAddress[0]}</span>
               <hr className={css.hr} />
-              <span>{lastWord({ address })}</span>
+              <span>{carAddress[1]}</span>
               <hr className={css.hr} />
               <span>Id:{id}</span>
               <hr className={css.hr} />
@@ -125,11 +125,13 @@ export const LernMoreModal = ({ onClose, carItem }) => {
                 {conditions(rentalConditions)[2]}
               </div>
               <div className={css.conditions_item}>
-                {`Mileage: `}
-                <span className={css.customer_data}>{replaseDot(mileage)}</span>
+                {`Mileage : `}
+                <span className={css.customer_data}>
+                  {numberWithComma(mileage)}
+                </span>
               </div>
               <div className={css.conditions_item}>
-                {`Price: `}
+                {`Price : `}
                 <span className={css.customer_data}>{rentalPrice}</span>
               </div>
             </li>

@@ -1,8 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
-import HomePage from 'pages/HomePage/HomePage';
-import Cars from 'pages/Cars/Cars';
-import Favorite from 'pages/Favorite/Favorite';
+import { lazy } from 'react';
+
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const Cars = lazy(() => import('pages/Cars/Cars'));
+const Favorite = lazy(() => import('pages/Favorite/Favorite'));
 
 export const App = () => {
   return (

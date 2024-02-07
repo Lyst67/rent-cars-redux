@@ -16,17 +16,3 @@ export const fetchCars = createAsyncThunk(
     }
   }
 );
-
-// const fetchItemsByPage = createAsyncThunk(
-//   'items/fetchByPage',
-//   async ({ page }, { rejectWithValue }) => {
-//     try {
-//       const response = await axios.get(
-//         `https://api.example.com/items?page=${page}`
-//       );
-//       return response.data;
-//     } catch (error) {
-//       return rejectWithValue(error.response.data);
-//     }
-//   }
-// );
