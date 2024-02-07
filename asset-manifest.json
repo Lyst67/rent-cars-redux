@@ -1,16 +1,30 @@
 {
   "files": {
-    "main.css": "/rent-cars-redux/static/css/main.f69bef0f.css",
-    "main.js": "/rent-cars-redux/static/js/main.458aad3b.js",
+    "main.css": "/rent-cars-redux/static/css/main.66e25dd5.css",
+    "main.js": "/rent-cars-redux/static/js/main.7f595220.js",
+    "static/css/674.9cf2f166.chunk.css": "/rent-cars-redux/static/css/674.9cf2f166.chunk.css",
+    "static/js/674.99b015f7.chunk.js": "/rent-cars-redux/static/js/674.99b015f7.chunk.js",
+    "static/css/38.957a6f83.chunk.css": "/rent-cars-redux/static/css/38.957a6f83.chunk.css",
+    "static/js/38.61b8fdcc.chunk.js": "/rent-cars-redux/static/js/38.61b8fdcc.chunk.js",
+    "static/css/756.8b0cb4c0.chunk.css": "/rent-cars-redux/static/css/756.8b0cb4c0.chunk.css",
+    "static/js/756.7ce28c77.chunk.js": "/rent-cars-redux/static/js/756.7ce28c77.chunk.js",
+    "static/js/902.479f7255.chunk.js": "/rent-cars-redux/static/js/902.479f7255.chunk.js",
     "static/media/driving.webp": "/rent-cars-redux/static/media/driving.16bd475a5b65954e690a.webp",
     "static/media/logo.webp": "/rent-cars-redux/static/media/logo.67e691531d95916ef36c.webp",
     "static/media/sprite.svg": "/rent-cars-redux/static/media/sprite.3f89a6f46dbdeb964c1ccba0d8c0bdd1.svg",
     "index.html": "/rent-cars-redux/index.html",
-    "main.f69bef0f.css.map": "/rent-cars-redux/static/css/main.f69bef0f.css.map",
-    "main.458aad3b.js.map": "/rent-cars-redux/static/js/main.458aad3b.js.map"
+    "main.66e25dd5.css.map": "/rent-cars-redux/static/css/main.66e25dd5.css.map",
+    "main.7f595220.js.map": "/rent-cars-redux/static/js/main.7f595220.js.map",
+    "674.9cf2f166.chunk.css.map": "/rent-cars-redux/static/css/674.9cf2f166.chunk.css.map",
+    "674.99b015f7.chunk.js.map": "/rent-cars-redux/static/js/674.99b015f7.chunk.js.map",
+    "38.957a6f83.chunk.css.map": "/rent-cars-redux/static/css/38.957a6f83.chunk.css.map",
+    "38.61b8fdcc.chunk.js.map": "/rent-cars-redux/static/js/38.61b8fdcc.chunk.js.map",
+    "756.8b0cb4c0.chunk.css.map": "/rent-cars-redux/static/css/756.8b0cb4c0.chunk.css.map",
+    "756.7ce28c77.chunk.js.map": "/rent-cars-redux/static/js/756.7ce28c77.chunk.js.map",
+    "902.479f7255.chunk.js.map": "/rent-cars-redux/static/js/902.479f7255.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f69bef0f.css",
-    "static/js/main.458aad3b.js"
+    "static/css/main.66e25dd5.css",
+    "static/js/main.7f595220.js"
   ]
 }
