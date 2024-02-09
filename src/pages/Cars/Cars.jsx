@@ -34,15 +34,15 @@ function Cars() {
     let chooseCars = carList.filter(car => {
       return (
         (!brand || car.make.toLowerCase() === brand) &&
-        (!price || car.rentalPrice.replace('$', '') <= price) &&
+        (!price ||
+          parseFloat(car.rentalPrice.replace('$', '')) <= parseFloat(price)) &&
         (!mileageFrom || car.mileage >= mileageFrom.replace(',', '')) &&
-        (!mileageTo || car.mileage >= mileageTo.replace(',', ''))
+        (!mileageTo || car.mileage <= mileageTo.replace(',', ''))
       );
     });
     if (!brand && !price && !mileageFrom && !mileageTo) {
       chooseCars = carList;
     }
-    // console.log(chooseCars.map(car => car.make));
     setFilteredCars(chooseCars);
   }
 
@@ -65,7 +65,6 @@ function Cars() {
   //   if (!brand && !price && !mileageFrom && !mileageTo) {
   //     chooseCars = carList;
   //   }
-  //   console.log(chooseCars.map(car => car.make));
   //   setFilteredCars(chooseCars);
   // }
 

@@ -3,7 +3,7 @@ import css from './ChooseForm.module.css';
 import { Button } from 'components/Button/Button';
 import { useSelector } from 'react-redux';
 import { selectCars } from 'app/features/cars/selectors';
-import { numberWithComma } from '../HelperFunctions/nelperFunctions';
+import { numberWithComma, priceStap } from '../HelperFunctions/nelperFunctions';
 
 export const ChooseForm = ({ onSubmit }) => {
   const carList = useSelector(selectCars);
@@ -28,16 +28,12 @@ export const ChooseForm = ({ onSubmit }) => {
     label: brand,
   }));
 
-  const prices = carList.map(
-    item => item.rentalPrice.substring(1) - (item.rentalPrice.substring(1) % 10)
-  );
-  let uniqueArr = [...new Set(prices)];
-  const optionsPrice = [...uniqueArr]
-    .sort((a, b) => a - b)
-    .map(price => ({
-      value: price,
-      label: price,
-    }));
+  const revtalPrices = carList.map(car => car.rentalPrice.replace('$', ''));
+  const maxValue = Math.max(...revtalPrices);
+  const optionsPrice = priceStap(maxValue).map(price => ({
+    value: price,
+    label: price,
+  }));
 
   const handleSubmit = event => {
     event.preventDefault();

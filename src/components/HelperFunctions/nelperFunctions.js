@@ -36,6 +36,14 @@ export function numberWithComma(number) {
   if (number.toString().split('').length <= 3) {
     return number;
   } else {
-    return (number / 1000).toString().replace('.', ',');
+    return (number / 1000).toFixed(3).replace('.', ',');
   }
+}
+
+export function priceStap(number) {
+  let list = [];
+  for (let i = 10; i <= number; i += 10) {
+    list.push(i);
+  }
+  return list;
 }

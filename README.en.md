@@ -1,7 +1,8 @@
 This car rental site was created by Full Stack Developer Pavlo Lystopad.
 
-Test task:
- Create an application for a company that provides car rental services
+![car-on-the-road](https//../src/components/assets/Rental-Cars.png)
+
+Test task: Create an application for a company that provides car rental services
 in Ukraine. The application consists of 3 pages:
 
 home page with a general description of the services provided by the company.
