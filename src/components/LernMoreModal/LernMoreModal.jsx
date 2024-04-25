@@ -34,7 +34,7 @@ export const LernMoreModal = ({ onClose, carItem }) => {
 
   const handleKeyDown = useCallback(
     event => {
-      if (event.key === 'Escape') {
+      if (event.keyCode === 27) {
         onClose();
       }
     },
